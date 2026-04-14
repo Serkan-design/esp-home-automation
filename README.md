@@ -11,7 +11,7 @@ This system is self-hosted on a Linux server and securely exposed using Cloudfla
 * ⚡ Real-time light control via ESP32
 * 🔐 Encrypted communication (ESPHome API)
 * 🌐 Remote access via Cloudflare Tunnel
-* 🖥️ Self-hosted Home Assistant (Docker)
+* 🖥️ Self-hosted Home Assistant (Docker on Ubuntu)
 * 📡 Local-first architecture (no cloud dependency)
 
 ---
