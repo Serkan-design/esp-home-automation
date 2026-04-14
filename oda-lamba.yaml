@@ -1,0 +1,30 @@
+esphome:
+  name: oda-lamba
+
+esp32:
+  board: esp32dev
+
+logger:
+
+api:
+  encryption:
+    key: "OAKrdbGxt8ioUk9Ph+AyqmgSBA7CwPCXudhrn8xVfAE="
+
+ota:
+  platform: esphome
+
+wifi:
+  ssid: "YOUR_WIFI"
+  password: "YOUR_PASSWORD"
+
+  manual_ip:
+    static_ip: 192.168.1.60
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
+switch:
+  - platform: gpio
+    pin: 23
+    name: "Oda Lambası"
+    inverted: true
+    restore_mode: ALWAYS_OFF
