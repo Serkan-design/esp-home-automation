@@ -1,37 +1,18 @@
 # 🏠 ESP32 Home Automation System (Siri + Home Assistant + Cloudflare)
 
 Control your home devices using ESP32 with full Siri voice integration via Home Assistant.
-This system is self-hosted on a Linux server and securely exposed using Cloudflare.
+This system is self-hosted on a Linux server and securely exposed using Cloudflare Tunnel.
 
 ---
 
 ## 🚀 Features
 
 * 🍏 Siri voice control (Apple Home)
-* ⚡ Real-time device control via ESP32
+* ⚡ Real-time light control via ESP32
 * 🔐 Encrypted communication (ESPHome API)
 * 🌐 Remote access via Cloudflare Tunnel
 * 🖥️ Self-hosted Home Assistant (Docker)
-* 📡 Local-first architecture (no dependency on cloud services)
-
----
-
-## 🧰 Hardware
-
-* ESP32
-* Relay module
-* Light / Lamp
-* WiFi network
-
----
-
-## ⚙️ Software Stack
-
-* ESPHome
-* Home Assistant (Docker)
-* Apple Home (HomeKit)
-* Ubuntu Server
-* Cloudflare Tunnel
+* 📡 Local-first architecture (no cloud dependency)
 
 ---
 
@@ -41,21 +22,27 @@ ESP32 → WiFi → Home Assistant (Docker) → Cloudflare Tunnel → Apple Home 
 
 ---
 
-## 🔌 1. ESP32 Setup (ESPHome)
+## 📸 Screenshots
 
-Install ESPHome:
+### 🖥️ Home Assistant Dashboard
 
-```bash
-pip install esphome
-```
+![Dashboard](./docs/screenshots/home-assistant-dashboard.png)
 
-Create config:
+### 🏠 Room Control
 
-```bash
-esphome wizard oda-lamba.yaml
-```
+![Room](./docs/screenshots/home-assistant-room.png)
 
-Example configuration:
+### 📊 Overview Panel
+
+![Overview](./docs/screenshots/home-assistant-overview.png)
+
+### 🍏 Apple Home (Siri Control)
+
+![Apple Home](./docs/screenshots/apple-home-control.png)
+
+---
+
+## 🔌 ESP32 Configuration (ESPHome)
 
 ```yaml
 esphome:
@@ -79,15 +66,9 @@ switch:
     inverted: true
 ```
 
-Flash device:
-
-```bash
-esphome run oda-lamba.yaml
-```
-
 ---
 
-## 🖥️ 2. Home Assistant (Docker on Ubuntu Server)
+## 🖥️ Server Setup (Ubuntu + Docker)
 
 Install Docker:
 
@@ -105,60 +86,24 @@ sudo docker run -d \
   ghcr.io/home-assistant/home-assistant:stable
 ```
 
-Access:
-
-```
-http://SERVER_IP:8123
-```
-
 ---
 
-## ☁️ 3. Cloudflare Tunnel (Remote Access)
-
-Install Cloudflared:
-
-```bash
-sudo apt install cloudflared -y
-```
-
-Login:
+## ☁️ Cloudflare Tunnel (Secure Remote Access)
 
 ```bash
 cloudflared tunnel login
-```
-
-Create tunnel:
-
-```bash
 cloudflared tunnel create homeassistant
-```
-
-Route:
-
-```bash
 cloudflared tunnel route dns homeassistant yourdomain.com
-```
-
-Run:
-
-```bash
 cloudflared tunnel run homeassistant
 ```
 
 ---
 
-## 🧠 4. Connect ESP32 to Home Assistant
+## 🍏 Apple Home Integration
 
-* Go to **Settings → Devices & Services**
-* Add **ESPHome Integration**
-* Enter ESP device IP
-
----
-
-## 🍏 5. Apple Home (Siri Integration)
-
-* Add **HomeKit Bridge** in Home Assistant
-* Scan QR code using Apple Home app
+1. Open Home Assistant
+2. Add **HomeKit Bridge** integration
+3. Scan QR code using Apple Home app
 
 Now you can say:
 
@@ -166,31 +111,19 @@ Now you can say:
 
 ---
 
-## 📸 Screenshots
-
-### Home Assistant Dashboard
-
-![Home Assistant](./docs/screenshots/home-assistant.png)
-
-### Apple Home App
-
-![Apple Home](./docs/screenshots/apple-home.png)
-
----
-
 ## 🔐 Security Notes
 
-* Do NOT expose ESP devices directly to the internet
-* Always use Cloudflare Tunnel instead of port forwarding
-* Keep API keys and WiFi credentials private
+* Never share your WiFi credentials
+* Keep API keys private
+* Do NOT expose ports directly (use Cloudflare Tunnel)
 
 ---
 
 ## 💡 Future Improvements
 
-* Multi-room automation
+* Multi-room control
 * Sensor integration (temperature, motion)
-* Mobile app control panel
+* Mobile dashboard
 
 ---
 
